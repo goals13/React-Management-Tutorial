@@ -9,14 +9,14 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
 
-const style = theme =>({
+const styles = theme =>({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overFlowX: "auto"
   },
   table: {
-    minwidth: 1080
+    minWidth: 1080
   }
 
 })
@@ -48,9 +48,10 @@ const customers =[
      }] 
 class App extends Component{
     render(){
+      const { classes } = this.props;
       return (
-        <Paper>
-          <Table>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
             
               <TableHead>
                 <TableRow>
@@ -62,9 +63,9 @@ class App extends Component{
                   <TableCell>직업</TableCell>
                 </TableRow>
               </TableHead>
-            <TableBody>
-              {customers.map(c => {return (<Customer key={c.id} id ={c.id} image={c.image} name={c.name} birthday={c.name} gender={c.gender} job={c.job} />);})}
-            </TableBody>
+              <TableBody>
+                {customers.map(c => {return (<Customer key={c.id} id ={c.id} image={c.image} name={c.name} birthday={c.name} gender={c.gender} job={c.job} />);})}
+              </TableBody>
           </Table>
         </Paper>
       );
@@ -72,4 +73,4 @@ class App extends Component{
 }
 
 
-export default App;
+export default withStyles(styles)(App);
